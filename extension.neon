@@ -1,0 +1,4 @@
+services:
+    - class: PestPHPStan\TestCaseExtension
+      tags:
+        - phpstan.broker.methodsClassReflectionExtension

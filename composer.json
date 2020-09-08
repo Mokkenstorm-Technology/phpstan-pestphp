@@ -1,0 +1,36 @@
+{
+    "name": "nmokkenstorm/phpstan-pestphp",
+    "description": "PestPHP helper library for PHPStan",
+    "type": "library",
+    "require": {
+        "phpstan/phpstan": "^0.12.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.0.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Niels Mokkentstorm",
+            "email": "nielsmokkenstorm@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "PestPHPStan\\": "src" 
+        }
+    },
+    "config": {
+        "sort-packages" : true
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests" 
+        }
+    },
+    "scripts": {
+        "test:types": "vendor/bin/phpstan analyse ./{src,tests} --level 2",
+        "test:tests": "venor/bin/pest"
+    }
+}
