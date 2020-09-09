@@ -15,7 +15,7 @@ class TestCaseExtensionTest extends TestCase
     protected function setUp() : void
     {
         $this->broker = $this->createBroker();
-        $this->extension = new TestCaseExtension;
+        $this->extension = new TestCaseExtension($this->broker);
     }
 
     /**

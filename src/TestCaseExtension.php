@@ -9,18 +9,31 @@ use PHPUnit\Framework\TestCase;
 use PHPStan\Reflection\{
     ClassReflection,
     MethodReflection,
-    MethodsClassReflectionExtension
+    MethodsClassReflectionExtension,
+    ReflectionProvider
 };
 
 class TestCaseExtension implements MethodsClassReflectionExtension
 {
+
+    private ReflectionProvider $reflectionProvider;
+
+    public function __construct(ReflectionProvider $reflectionProvider)
+    {
+        $this->reflectionProvider = $reflectionProvider;
+    }
+
     public function hasMethod(ClassReflection $classReflection, string $method) : bool
     {
         if ($classReflection->getName() !== TestCall::class) {
             return false;
         }
 
-        return method_exists(TestCase::class, $method);
+        if (!$this->reflectionProvider->hasClass(TestCase::class)) {
+            return false;
+        }
+
+        return $this->reflectionProvider->getClass(TestCase::class)->hasNativeMethod($method);
     }
 
     public function getMethod(ClassReflection $classReflection, string $method) : MethodReflection
