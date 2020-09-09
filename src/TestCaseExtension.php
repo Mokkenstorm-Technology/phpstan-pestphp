@@ -2,6 +2,10 @@
 
 namespace PestPHPStan;
 
+use Pest\PendingObjects\TestCall;
+
+use PHPUnit\Framework\TestCase;
+
 use PHPStan\Reflection\{
     ClassReflection,
     MethodReflection,
@@ -12,7 +16,11 @@ class TestCaseExtension implements MethodsClassReflectionExtension
 {
     public function hasMethod(ClassReflection $classReflection, string $method) : bool
     {
-        return true;
+        if ($classReflection->getName() !== TestCall::class) {
+            return false;
+        }
+
+        return method_exists(TestCase::class, $method);
     }
 
     public function getMethod(ClassReflection $classReflection, string $method) : MethodReflection

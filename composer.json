@@ -3,9 +3,11 @@
     "description": "PestPHP helper library for PHPStan",
     "type": "library",
     "require": {
-        "phpstan/phpstan": "^0.12.0"
+        "phpstan/phpstan": "^0.12.0",
+        "php": "7.4.* | 8.*"
     },
     "require-dev": {
+        "pestphp/pest": "^0.3.1",
         "phpunit/phpunit": "^9.0.0"
     },
     "license": "MIT",
@@ -30,7 +32,11 @@
         }
     },
     "scripts": {
+        "test": [
+            "composer test:types",
+            "composer test:unit"
+        ],
         "test:types": "vendor/bin/phpstan analyse ./{src,tests} --level 2",
-        "test:tests": "venor/bin/pest"
+        "test:unit": "vendor/bin/phpunit"
     }
 }

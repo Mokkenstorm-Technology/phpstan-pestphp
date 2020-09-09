@@ -1,0 +1,7 @@
+<testsuites>
+    <testsuite name="Default Test Suite">
+        <directory suffix=".php" phpVersion="7.4.0" phpVersionOperator=">=">
+            ./tests
+        </directory>
+    </testsuite>
+</testsuites>
