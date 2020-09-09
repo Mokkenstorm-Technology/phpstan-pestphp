@@ -38,7 +38,7 @@ class TestCaseExtension implements MethodsClassReflectionExtension
 
     public function getMethod(ClassReflection $classReflection, string $method) : MethodReflection
     {
-        return new TestCaseMethodReflection($classReflection, $method);
+        return $this->reflectionProvider->getClass(TestCase::class)->getNativeMethod($method);
     }
 }
 
