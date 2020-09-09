@@ -36,7 +36,7 @@
             "composer test:types",
             "composer test:unit"
         ],
-        "test:types": "vendor/bin/phpstan analyse ./{src,tests} --level 2",
+        "test:types": "vendor/bin/phpstan analyse ./{src,tests} --level 8",
         "test:unit": "vendor/bin/phpunit"
     }
 }
